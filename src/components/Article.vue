@@ -65,6 +65,11 @@ export default {
       };
     }
   },
+  provide() {
+    return {
+      getLinkedItems: () =>this.article.linkedItems
+    }
+  },
   watch: {
     language: function(){
       ArticleStore.provideArticle(this.$route.params.articleId, this.language);

@@ -31,8 +31,10 @@ class Article extends BaseStore {
       .subscribe(response => {
         if (language) {
           articleDetails[language][articleId] = response.items[0];
+          articleDetails[language][articleId].linkedItems = response.linkedItems;
         } else {
           articleDetails[defaultLanguage][articleId] = response.items[0];
+          articleDetails[defaultLanguage][articleId].linkedItems = response.linkedItems;
         }
         this.notifyChange();
       });

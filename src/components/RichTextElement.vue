@@ -1,18 +1,28 @@
 <template>
-    <div 
-        v-html="element.resolveHtml()" 
+    <div
         @click="handleClick"
-    />
+    >
+        <RichText
+            :content="element.value"
+            :linkedItemComponent="linkedItemComponent"
+        />
+    </div>
 </template>
 
 <script>
 import {resolveContentLink} from '../Utilities/ContentLinks'
+import {RichText} from 'vue-kontent-rich-text';
+import LinkedItem from './LinkedItem';
 
 export default {
   name: 'RichTextElement',
   props: ['element'],
+  components: {'RichText': RichText},
+  computed: {
+    linkedItemComponent: () => LinkedItem
+  },
   methods: {
-    handleClick: function(e){
+    handleClick: function (e) {
       if (e.target.tagName === 'A' && e.target.hasAttribute('data-item-id')) {
         e.preventDefault();
 
